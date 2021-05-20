@@ -1,8 +1,7 @@
 # run in vscode terminal: .\screenshot_script.py URLs
+# run in command prompt: python -m screenshot_script URLs
 # "usb_device_handle_win.cc:1054 Failed to read descriptor from node connection: 
 # A device attached to the system is not functioning. (0x1F)" can safely be ignored
-# test command: .\screenshot_script.py C:\test\New_folder____________________________________ C:\test\New_folder2_____________________ C:\test
-# test2: .\screenshot_script.py https://bcs.livingskysd.ca/ https://bready.livingskysd.ca/
 
 # .\screenshot_script.py https://bcs.livingskysd.ca/ https://bready.livingskysd.ca/ https://cando.livingskysd.ca/ https://connaught.livingskysd.ca/ https://ckcs.livingskysd.ca/ https://hafford.livingskysd.ca/ https://hces.livingskysd.ca/ https://heritage.livingskysd.ca/ https://kerrobert.livingskysd.ca/ https://lawrence.livingskysd.ca/ https://leoville.livingskysd.ca/ https://lssdvirtual.livingskysd.ca/ https://luseland.livingskysd.ca/ https://macklin.livingskysd.ca/ https://maymont.livingskysd.ca/ https://mckitrick.livingskysd.ca/ https://mclurg.livingskysd.ca/ https://medstead.livingskysd.ca/ https://nces.livingskysd.ca/ https://nbchs.livingskysd.ca/ https://shs.livingskysd.ca/ https://stvital.livingskysd.ca/ https://uchs.livingskysd.ca/ https://ups.livingskysd.ca/ https://www.livingskysd.ca/
 # python -m screenshot_script https://bcs.livingskysd.ca/ https://bready.livingskysd.ca/ https://cando.livingskysd.ca/ https://connaught.livingskysd.ca/ https://ckcs.livingskysd.ca/ https://hafford.livingskysd.ca/ https://hces.livingskysd.ca/ https://heritage.livingskysd.ca/ https://kerrobert.livingskysd.ca/ https://lawrence.livingskysd.ca/ https://leoville.livingskysd.ca/ https://lssdvirtual.livingskysd.ca/ https://luseland.livingskysd.ca/ https://macklin.livingskysd.ca/ https://maymont.livingskysd.ca/ https://mckitrick.livingskysd.ca/ https://mclurg.livingskysd.ca/ https://medstead.livingskysd.ca/ https://nces.livingskysd.ca/ https://nbchs.livingskysd.ca/ https://shs.livingskysd.ca/ https://stvital.livingskysd.ca/ https://uchs.livingskysd.ca/ https://ups.livingskysd.ca/ https://www.livingskysd.ca/
@@ -22,9 +21,10 @@ for _ in sys.argv:
         if name == "https://www.livingskysd.ca/":
             name = "lskysd"
         elif len(name) <= 24: #this should not happen with school URLs, just for preventing errors
-            name = str(sys.argv.index(_))
+            name = "".join( x for x in name if (x.isalnum()))
         else:
             name = name[8:-16] #converts URL to schoolname
+            name = "".join( x for x in name if (x.isalnum()))
         name = name + ".jpg"
         try:
             driver.get(str(_))
